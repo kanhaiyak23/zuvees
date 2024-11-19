@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+datasource db {
+  provider = "postgresql" // or your database provider
+  url      = env("DATABASE_URL") // e.g., mysql://USER:PASSWORD@HOST/DATABASE
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id            Int        @id @default(autoincrement())
+  name          String
+  defaultVariant String
+  categoryId    Int
+  price         Float
+  image         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  // Relationship with Category
+  category      Category   @relation(fields: [categoryId], references: [id])
+  
+  // Relationship with Variant (One-to-many from Product to Variant)
+  variants      Variant[]
+
+  // Relationship with Order (One-to-many from Product to Order)
+  orders        Order[]
+}
+
+model Category {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  products  Product[]  // One-to-many from Category to Product
+  // One-to-many from Category to RawMaterial
+}
+
+model RawMaterial {
+  id         Int       @id @default(autoincrement())
+  name       String
+  price      Float
+  quantity   Int
+ 
+
+  // Relationship with Variant (Many-to-many between RawMaterial and Variant)
+  variants   Variant[] // RawMaterial can be linked to multiple Variants
+
+  Variant Variant[] @relation("VariantRawMaterials")
+}
+
+model Variant {
+  id         Int        @id @default(autoincrement())
+  name       String
+  code       String
+  productId  Int
+  price      Float
+  quantity   Int
+  image      String?
+
+  // Relationship with Product (Many-to-one from Variant to Product)
+  product    Product    @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  // Many-to-many relationship with RawMaterial
+  rawMaterials RawMaterial[] @relation("VariantRawMaterials")
+
+  RawMaterial RawMaterial[]
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  productId  Int
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  quantity   Int
+  totalPrice Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
