@@ -28,7 +28,7 @@ const AddProductVariantModal = ({ isOpen, onClose, onAddProductVariant }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/products");
+        const response = await axios.get("https://zuvees-backend-2i63.onrender.com/api/products");
         setProducts(response.data); // Assuming the endpoint returns products in the format [{ id, name }]
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -48,7 +48,7 @@ const AddProductVariantModal = ({ isOpen, onClose, onAddProductVariant }) => {
   const handleSubmit = async () => {
     try {
       // API call to save the product variant to the database
-      const response = await axios.post("http://localhost:3001/api/variants", newVariant);
+      const response = await axios.post("https://zuvees-backend-2i63.onrender.com/api/variants", newVariant);
 
       if (response.status === 201) {
         // Call the callback with the new variant data

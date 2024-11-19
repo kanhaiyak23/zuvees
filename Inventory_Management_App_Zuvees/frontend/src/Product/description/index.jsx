@@ -13,7 +13,7 @@ const ProductPage = () => {
   // Fetch product details and variants based on productId
   useEffect(() => {
     // Fetch product details
-    axios.get(`http://localhost:3001/api/products/${productId}`)
+    axios.get(`https://zuvees-backend-2i63.onrender.com/api/products/${productId}`)
       .then(response => {
         setProduct(response.data);
         console.log(response.data);
@@ -23,7 +23,7 @@ const ProductPage = () => {
       });
 
     // Fetch variants for the product
-    axios.get(`http://localhost:3001/api/variants/${productId}`)
+    axios.get(`https://zuvees-backend-2i63.onrender.com/api/variants/${productId}`)
       .then(response => {
         console.log(response.data);
         setVariants(response.data); // Assuming response data contains product variants
@@ -35,7 +35,7 @@ const ProductPage = () => {
 
   // Fetch categories from the API
   useEffect(() => {
-    axios.get('http://localhost:3001/api/categories') // Replace with your categories API endpoint
+    axios.get('https://zuvees-backend-2i63.onrender.com/api/categories') // Replace with your categories API endpoint
       .then(response => {
         setCategories(response.data); // Assuming response data contains the categories
       })

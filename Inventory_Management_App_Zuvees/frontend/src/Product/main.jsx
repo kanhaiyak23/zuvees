@@ -15,7 +15,7 @@ const UserPage = () => {
   // Fetch categories and products
   useEffect(() => {
     // Fetch categories using Axios
-    axios.get('http://localhost:3001/api/categories')
+    axios.get('https://zuvees-backend-2i63.onrender.com/api/categories')
       .then(response => {
         setCategories(response.data);
         if (response.data.length > 0) {
@@ -27,7 +27,7 @@ const UserPage = () => {
       });
 
     // Fetch all products using Axios
-    axios.get('http://localhost:3001/api/products')
+    axios.get('https://zuvees-backend-2i63.onrender.com/api/products')
       .then(response => {
         setProducts(response.data);
       })

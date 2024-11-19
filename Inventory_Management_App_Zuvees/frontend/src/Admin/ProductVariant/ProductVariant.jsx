@@ -23,7 +23,7 @@ const ProductVariantsPage = () => {
   useEffect(() => {
     const fetchProductVariants = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/variants");
+        const response = await axios.get("https://zuvees-backend-2i63.onrender.com/api/variants");
         setProductVariants(response.data);
       } catch (error) {
         console.error("Error fetching product variants:", error);

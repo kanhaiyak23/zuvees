@@ -24,7 +24,7 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory }) => {
   const handleSubmit = async () => {
     try {
       // Send category data without rawMaterial
-      await axios.post("http://localhost:3001/api/categories", categoryData);
+      await axios.post("https://zuvees-backend-2i63.onrender.com/api/categories", categoryData);
       onAddCategory(categoryData);
       setCategoryData({
         name: "",

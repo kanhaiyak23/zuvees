@@ -27,7 +27,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
     if (isOpen) {
       // Fetch categories from API
       axios
-        .get("http://localhost:3001/api/categories")
+        .get("https://zuvees-backend-2i63.onrender.com/api/categories")
         .then((response) => {
           setCategories(response.data); // Assuming response contains the categories
         })
@@ -53,7 +53,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/products",
+        "https://zuvees-backend-2i63.onrender.com/api/products",
         formData,
         {
           headers: {

@@ -27,7 +27,7 @@ const AddRawMaterialModal = ({ isOpen, onClose, onAddRawMaterial, existingCodes 
     if (isOpen) {
       const fetchCategories = async () => {
         try {
-          const response = await axios.get("http://localhost:3001/api/categories");
+          const response = await axios.get("https://zuvees-backend-2i63.onrender.com/api/categories");
           if (response.status === 200) {
             setCategories(response.data); // Set the categories from the API
           } else {
@@ -64,7 +64,7 @@ const AddRawMaterialModal = ({ isOpen, onClose, onAddRawMaterial, existingCodes 
       const payload = { ...rawMaterialData, code: uniqueCode };
 
       // API call to save the raw material to the database
-      const response = await axios.post("http://localhost:3001/api/raw-materials", payload);
+      const response = await axios.post("https://zuvees-backend-2i63.onrender.com/api/raw-materials", payload);
 
       if (response.status === 201) {
         // Call the callback to update the UI

@@ -23,7 +23,7 @@ const RawMaterialPage = () => {
   useEffect(() => {
     const fetchRawMaterials = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/raw-materials");
+        const response = await axios.get("https://zuvees-backend-2i63.onrender.com/api/raw-materials");
         setRawMaterials(response.data);
       } catch (error) {
         console.error("Error fetching raw materials:", error);

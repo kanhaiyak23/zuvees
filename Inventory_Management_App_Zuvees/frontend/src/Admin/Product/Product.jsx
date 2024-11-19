@@ -23,7 +23,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/products");
+        const response = await fetch("https://zuvees-backend-2i63.onrender.com/api/products");
         const data = await response.json();
         console.log(data);
         if (response.ok) {
@@ -38,7 +38,7 @@ const ProductsPage = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/categories");
+        const response = await fetch("https://zuvees-backend-2i63.onrender.com/api/categories");
         const data = await response.json();
         if (response.ok) {
           setCategories(data);

@@ -23,7 +23,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/api/categories");
+        const response = await axios.get("https://zuvees-backend-2i63.onrender.com/api/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
